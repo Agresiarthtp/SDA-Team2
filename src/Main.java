@@ -1,52 +1,63 @@
 import java.util.Scanner;
 
-class Node{
-    String data;
+class Node {
+    String name;
     Node next;
 
-    public Node(String data){
-        this.data = data;
+    public Node(String name) {
+        this.name = name;
         this.next = null;
     }
 }
 
-class QueueManagement {
-    Node head;
+class CustomerQueue {
+    private Node head, tail;
 
-    public void push(String data){ //ditambahkan ke antrian
-        Node newNode = new Node(data);
+    // menambahkan ke belakang antrian
+    public void push(String name){
+        Node newNode = new Node(name);
         if (head == null){
             head = newNode;
-        }else{
-            Node current = head;
-            while(current.next != null){
-                current = current.next;
-            }
-            current.next = newNode;
+            tail = newNode;
+        } else {
+            tail.next = newNode;
+            tail = newNode;
         }
+        System.out.println( " " + name);
     }
 
-    public  void pop(){ //melayani antrian (hilangkan dari list)
-        if(head != null){
+    // melayani pelanggan dari antrian yang didepan
+    public String pop(){
+        if (head == null){
+            return null;
+        } else {
+            String name = head.name;
             head = head.next;
+            return name;
         }
     }
 
-    public void display(){
-        Node current = head;
-        System.out.println("List Antrian: \n");
-        while(current != null){
-            System.out.print(current.data + "->");
-            current = current.next;
-        }
-        System.out.print("Habis\n");
+    // menampilkan seluruh antrian
+    public String showQueueList(){
+       if (head == null){
+           System.out.println("Queue is empty");
+       } else {
+           System.out.println("\nCurrent Queue List :");
+           Node current = head;
+           while (current != null){
+               System.out.println(" " + current.name);
+               current = current.next;
+           }
+       }
+       return null;
+
     }
 }
 
-public class Main{
-    public static void main(String[] args){
+public class Main {
+    public static void main(String[] args) {
         Scanner scanner = new Scanner(System.in);
-        QueueManagement list = new QueueManagement();
+       CustomerQueue queue = new CustomerQueue();
 
         System.out.println("--Aplikasi Antrian Restoran--");
 
@@ -72,18 +83,18 @@ public class Main{
                 case 1:
                     System.out.println("Masukkan nama pelanggan: ");
                     String data = scanner.nextLine();
-                    list.push(data);
-                    list.display();
+                    queue.push(data);
+                    queue.showQueueList();
                     break;
 
                 case 2:
-                    list.pop();
+                    queue.pop();
                     System.out.println("Antrian telah dilayani\n");
-                    list.display();
+                    queue.showQueueList();
                     break;
 
                 case 3:
-                    list.display();
+                    queue.showQueueList();
                     break;
 
                 case 4:
@@ -95,5 +106,15 @@ public class Main{
             }
         }
 
+//       queue.push("Agresia"); // masuk pada barisan pertama
+//       queue.push("Putu"); // masuk pada barisan kedua
+//       queue.push("Tria"); // masuk pada barisan ketiga
+//       queue.push("Fadli"); // masuk pada barisan keempat
+//       queue.push("Luthfi"); // masuk pada barisan kelima
+//
+//       queue.pop(); // ketika barisan pertama dilayani
+//       System.out.println(queue.showQueueList());
+//       queue.pop(); // ketika barisan kedua dilayani
+//       System.out.println(queue.showQueueList());
     }
 }
