@@ -105,16 +105,5 @@ public class Main {
                     System.out.println("Pilih tidak valid, silahkan pilih angka 1-4. ");
             }
         }
-
-//       queue.push("Agresia"); // masuk pada barisan pertama
-//       queue.push("Putu"); // masuk pada barisan kedua
-//       queue.push("Tria"); // masuk pada barisan ketiga
-//       queue.push("Fadli"); // masuk pada barisan keempat
-//       queue.push("Luthfi"); // masuk pada barisan kelima
-//
-//       queue.pop(); // ketika barisan pertama dilayani
-//       System.out.println(queue.showQueueList());
-//       queue.pop(); // ketika barisan kedua dilayani
-//       System.out.println(queue.showQueueList());
     }
 }
